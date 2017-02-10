@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* 重置 */
+
+a,img,button,input,textarea{ border: 0;text-decoration:none;}
+body, h1, h2, h3, h4, h5, h6, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td, figure, select,b{margin: 0; padding: 0; font-weight:normal; list-style:none; }
+img{ display:block;}
+html {
+	height: 100%;
+	width: 100%;
+	font-size: 20px;
+	outline: 0;
+	-webkit-text-size-adjust:none;
+}
+body {
+	height: 100%;
+	margin: 0;
+	-webkit-user-select: none;
+	position: relative;
+	background-color:#f2f2f2;
+}
+
+/*公用样式*/
+*{font-weight: normal;font-family: SourceHanSansCN,PingFangSC-Light,PingFangSC-Regular,San Francisco, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;}
+.fl{float: left;}
+.fr{float: right;}
+.left{margin-left: 0.6rem;}
+.right{margin-right: 0.6rem;}
+.por_r{ position:relative;}
+.por_a{ position:absolute;}
+.por_f{position: fixed;}
+.clear_fix{ clear:both;}
+
+/*手机端*/
+.choujiang_box{width: 100%;}
+.banner{width: 100%;height: 100%;overflow: hidden;}
+.banner img{width: 100%;}
+.xx_box{font-size: 0.7rem;}
+.xx_box span{float: left;border-right: solid 0.05rem #dcdcdc;text-align: center;line-height: 1.2rem;font-size: 0.7rem;border-bottom: solid 0.05rem #dcdcdc;}
+.xx_box span:nth-child(1){width: 15%;}
+.xx_box span:nth-child(2){width: 35%;}
+.xx_box span:nth-child(3){width: 50%;}
+.xx_box p{text-align: center;line-height: 1.2rem;font-size: 0.7rem;border-bottom: solid 0.05rem #dcdcdc;margin-top: 10px;word-wrap:break-word;}
+
+.jm_box{border-bottom: solid 0.05rem #dcdcdc;overflow: hidden; margin-top: 10px;}
+.jm_box .img_box{width: 42%;height: 50%;overflow: hidden;border-right: solid 0.05rem #dcdcdc;}
+.jm_box .img_box img{width: 100%;height: 100%;margin-bottom: 0.3rem;}
+.jm_box .img_box img:last-child{margin-bottom: 0;}
+.jm_box > .fr{width: 58%;}
+.jm_box > .fr .zt{padding-left: 0.3rem;font-size: 0.9rem;line-height: 1.2rem;border-bottom: solid 0.05rem #dcdcdc;overflow: hidden;}
+.jm_box > .fr .zt span,.jm_box > .fr .zt p{float: left;}
+.jm_box > .fr .zt span{display: block;width: 4.5rem;}
+.dianzan span{float: left;width: 20%;height: auto;cursor: pointer;}
+.dianzan span:hover{background: #202127;}
+.dianzan span img{width: 60%;margin:0 auto;margin-top: 0.6rem;margin-bottom: 0.6rem;}
+
+/*网页端*/
+.w1200{width: 1200px;margin:0 auto;}
+.top_nav{width: 420px;margin:0 auto;padding-top: 20px;}
+.top_nav span{width: 120px;line-height: 50px;text-align: center;font-size: 18px;color: #000;margin-right: 30px;float: left;border:solid 2px #dcdcdc;}
+.top_nav span:last-child{margin-right: 0;}
+.main_box{width: 1000px;margin:0 auto;background: #f8f8f8;overflow:auto;height: 720px;position: relative;top: 20px;border:solid 1px #dcdcdc;}
+.main_box button{width: 100px;height: 100px;background: #ff8400;border-radius: 100%;position: absolute;left: 50%;top: 50%;margin-left: -50px;margin-top: -50px;font-size: 36px;color: white;text-align: center;line-height: 100px;display: block;}
+.main_box button:last-child{background: #ff4444;}
+.main_box li{float: left;width: 10%;height: 120px;overflow: hidden;background: white;position: relative;}
+.main_box li i{position: absolute;width: 100%;height:100%;background: rgba(0,0,0,0.3);display: none;}
+.main_box li.current i{display: block;}
+.main_box li img{width: 80%;margin:0 auto;height: 80%;margin-top: 10%;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

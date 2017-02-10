@@ -1,0 +1,55 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+ 		http://www.springframework.org/schema/context
+ 		http://www.springframework.org/schema/context/spring-context-4.1.xsd
+ 		http://www.springframework.org/schema/mvc   
+		http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+		http://www.springframework.org/schema/task
+		http://www.springframework.org/schema/task/spring-task-4.1.xsd
+		http://www.springframework.org/schema/tx  
+		http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+		http://www.springframework.org/schema/aop  
+		http://www.springframework.org/schema/aop/spring-tx-4.1.xsd">
+
+	<!-- 扫描com.world包下的所有文件 -->
+	<context:component-scan base-package="com.world">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+	</context:component-scan>
+	
+	<!-- 自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean,是spring MVC为@Controllers分发请求所必须的。 -->
+	<mvc:annotation-driven />
+	
+	<!-- 进行静态资源访问 -->
+	<mvc:resources location="/WEB-INF/resources/" mapping="/resources/**" />
+	
+	<!-- 对@Scheduled注解的定时器 -->
+	<task:annotation-driven />
+	
+	<!-- 自定义拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/back/**"/>
+			<bean class="com.world.interceptor.WebInterceptor"></bean>   
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- restful风格的url匹配原则 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- 文件上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="3200000" />
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxInMemorySize" value="4096" />
+	</bean>
+	
+</beans>

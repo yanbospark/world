@@ -1,0 +1,5 @@
+点击游戏前几名有奖：click_rank
+一个人只能中几次：max_win
+
+
+SerialNumber:配置表名 tableName=User,value=1;   insert into Serialnumber values(1,'User',1);

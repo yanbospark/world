@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+
+<title>首页</title>
+<style type="text/css">
+    body{background-color: rgba(255, 235, 59, 0.08);}
+	.page_head{width:100%;height:100%;display:block;}
+	.page_show{width:100%;height:100%;display:block;}
+	.page_hide{display: none;}
+	.page_table{border:solid #add9c0; border-width:1px 0px 0px 1px;}	
+	.page_table tr{width: 100%;height: 40px;}
+	.page_table tr td{width: 33%;background-color: pink;}
+	.page_div_right{width:70%;height: 50%;background-color: green;position: relative;float: right;}
+	.page_div_left{width:30%;height: 50%;position: relative;float: left;}
+	
+</style>
+<script src="../common/js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="page_head">
+		<img alt="" src="../images/IMG_3803.jpg" width="100%" id="u_img">
+	</div>
+	<div id="user_info">
+		<!-- <p>牛主：演播</p>
+		<p>ID：1号</p>
+		<p>手机号：15172117256</p>
+		<p>中奖号码：0001，0002，0003，0923</p> -->
+	</div>
+	<!-- <div class="page_show" id="show_info">
+		<div class="page_div_right">
+			<table class="page_table">
+				<tr><td>节目名称</td><td>演出人员</td><td>得分</td></tr>
+				<tr><td>时光剪影</td><td>文舒、朱诚亦</td><td>20</td></tr>
+			</table>
+		</div>
+		<div class="page_div_left">
+			<img alt="" src="../images/IMG_3808.jpg" width="100%"/>
+		</div>
+	</div>
+	<div class="page_show" id="show_info2">
+		<div class="page_div_right">
+			<table class="page_table">
+				<tr><td>节目名称</td><td>演出人员</td><td>得分</td></tr>
+				<tr><td>时光剪影</td><td>文舒、朱诚亦</td><td>20</td></tr>
+			</table>
+		</div>
+		<div class="page_div_left">
+			<img alt="" src="../images/IMG_3808.jpg" width="100%"/>
+		</div>
+	</div> -->
+	<p id="click_count">哈哈</p>
+	<button onclick="start()">开始GO</button>
+</body>
+<script type="text/javascript">
+	var basepath="/world";//项目名
+	var serial=1;//初始化获取第一个节目信息
+	$(function(){
+		getResource("GET",basepath+"/front/home/userinfo",{},0);	
+		getResource("GET",basepath+"/front/home/showinfo/"+serial,{},1);
+	})
+	
+	function getResource(type,url,data,state){
+		$.ajax({
+			type:type,
+			url:url,
+			data:data,
+			dataType:"json",
+			success:function(resp){
+				if(state==0) userinfo(resp);
+				else if(state==1) showinfo(resp);
+				else if(state==2) checkStatus(resp);
+			},
+			error:function(){
+				alert("Server error!");
+			}
+		})
+	}
+	
+	function userinfo(resp){
+		console.log(resp);
+		if(resp.code=="0"){
+			var user=eval("("+decodeURIComponent(resp.message)+")");
+			console.log(user);
+			$("#u_img").attr("src",user.img);
+			$("#user_info").append("<p>牛主🐂："+user.username+"</p><p>ID:"+user.id+"</p><p>手机号:"+user.tel+"</p><p>中奖号码:"+user.serialnumbers+"</p><p></p>")
+		}else{
+			$("#user_info").append("<p>"+resp.message+"</p>")
+		}
+	}
+	//查询正在进行的节目流程的序号，然后根据这个序号查询出前面的所有的节目
+	//查询投票表，查询出已经投票了的记录
+	//有一个投票状态
+	function showinfo(resp){
+		console.log(resp);
+		if(resp.code=="0"){
+			var show=eval("("+decodeURIComponent(resp.message)+")");
+			console.log(show);
+			$("body").append("<div class=\"page_show\" id=\"show_info\"><div class=\"page_div_right\">\
+					<table class=\"page_table\">\
+						<tr><td>节目名称</td><td>演出人员</td><td>得分</td></tr>\
+						<tr><td>"+show.name+"</td><td>"+show.performers+"</td><td>图片</td></tr>\
+					</table>\
+				</div>\
+				<div class=\"page_div_left\"><img src=\"../images/IMG_3808.jpg\" width=\"100%\"/></div></div>");
+		}
+	}
+
+	
+	
+	//点击事件只能一次性提交：点击开始，然后1分钟计时开始
+	var seconds=60;
+	var click=0;
+	//点击开始
+	function start(){
+		//点击开始然后直接请求接口，将开始了这个信号发到后台，让后台也开始定时统计，免得别人刷新页面这种行为
+		getResource("POST",basepath+"/front/home/click",{},2);
+	}
+	
+	function checkStatus(resp){
+		if(resp.code=="1") {
+			alert(resp.message);
+			return;
+		}
+		$("body").append("<button onclick=\"doCount()\">快速点击召唤神龙</button>");
+		var intervar=setInterval(function(){
+			console.log(seconds);
+			seconds--;
+			if(seconds<0){
+				clearInterval(intervar);
+				//发送http请求将点击的次数上传
+				getResource("POST",basepath+"/front/home/click",{count:click},3);	
+			}
+		},1000);
+	}
+	
+	//点击触发事件
+	function doCount(){
+		if(seconds<0) return;//时间结束就停止统计
+		click++;
+		$("#click_count").text("点击了 "+click+" 次");
+	}
+</script>
+</html>

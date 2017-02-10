@@ -1,0 +1,71 @@
+@media (max-width:1300px){
+.content{width: 1200px; margin: auto;  min-height: 100px;}
+.left{width:213px;min-height: 100px; float: left;  margin-right: 5px;box-sizing:border-box; margin-left: 0; }
+.left h2{margin-top: 80px; text-align: center;  border: 0px solid #666;}
+.left ul{list-style: none;   padding: 0;border: 0px solid #333333; width:213px;}
+.left ul li{ padding: 0; border-bottom: dashed 1px   #666666;  width: 210px;margin: auto;}/***margin-top: 10px;***/
+.left ul li h4{border-bottom: 1px dashed #666666;padding: 10px; ;line-height: 30px;}
+.left ul li div{float: left;width: 70px;margin-right: 0px;line-height: 40px;}
+.center{overflow: hidden;  width: 770px; float: left;}
+.right{width: 210px;min-height: 100px; border: 0px solid #666;float: left; box-sizing:border-box;margin-left: 2px; margin-right: 0;}
+.right ul{list-style: none;  margin-top: 80px; padding: 0; width:200px;  }/**border: 1px solid #333333;**/
+.right ul li{ padding: 0; border-bottom: 1px dashed #666666;  margin: auto; text-align: center;  line-height: 40px;}/***margin-top: 10px;***/
+
+.jiemu{
+    margin-top: 80px; border: 1px solid #999; box-sizing: border-box; height: 600px;overflow-y: scroll;
+
+}
+.jiemu ul{list-style: none;   padding: 0;border: 0px solid #333333; width: 700px; text-align: center; margin: auto;  margin-top: 20px;}
+
+.jiemu ul li{ padding: 10px; border-bottom: solid 1px   #666666;  width: 700px;margin: auto;}
+
+.jiemu ul li div{float: left;}
+
+.jiemu ul li .img{width: 200px; height: 200px; overflow: hidden;}
+
+.jiemu ul li .img img{width: 200px; height: 200px;}
+.jiemu ul li  .con{margin-left: 50px; width: 400px;}
+
+.jiemu ul li  .con h4{text-align: center; border-bottom: 1px dashed #999999;width: 100%; line-height: 50px;}
+.jiemu ul li  .con p{width: 100%;border-bottom: 1px dashed #999999; line-height:40px;}
+}
+
+@media (min-width:1301px){
+    .content{min-width: 1301px; width: 100%; margin: auto;  min-height: 100px;}
+    .left{
+        /*min-width:213px;*/
+        width: 20%; min-height: 100px; float: left; box-sizing:border-box; margin-left: 0;  overflow: hidden;}
+    .left h2{margin-top: 80px; text-align: center;  border: 0px solid #666; width: 100%;}
+    .left ul{list-style: none;   padding: 0;border: 0px solid #333333; min-width:213px; width: 100%;}
+    .left ul li{ padding: 0; border-bottom: dashed 1px   #666666;  min-width: 210px;margin: auto; width:90%;}/***margin-top: 10px;***/
+    .left ul li h4{border-bottom: 1px dashed #666666;padding: 10px; ;line-height: 30px; width: 100%;}
+    .left ul li div{float: left;margin-right: 0px;line-height: 40px; width: 25%;text-align: center;}
+    .left ul li .s_first{width:32%}
+    .left ul li .s_sd{width:15%}
+
+    .center{overflow: hidden;  min-width: 770px;  float: left; text-align: center; margin: auto; width: 60%;box-sizing:border-box;}
+
+    .right{
+        /*min-width: 210px;*/
+        width: 20%; min-height: 100px; border: 0px solid #666;float: left; box-sizing:border-box;margin-right: 0;overflow: hidden;}
+    .right ul{list-style: none;  margin-top: 80px; padding: 0; width: 100%;  }/**border: 1px solid #333333;**/
+    .right ul li{ padding: 0; border-bottom: 1px dashed #666666;  margin: auto; text-align: center;  line-height: 30px; width: 100%;}/***margin-top: 10px;***/
+
+    .jiemu{
+        margin-top: 80px; border: 1px solid #999; box-sizing: border-box; height: 600px;overflow-y: scroll;
+
+    }
+    .jiemu ul{list-style: none;   padding: 0;border: 0px solid #333333; width: 700px; text-align: center; margin: auto;  margin-top: 20px;}
+
+    .jiemu ul li{ padding: 10px; border-bottom: solid 1px   #666666;  width: 700px;margin: auto;font-weight:bolder;}
+
+    .jiemu ul li div{float: left;}
+
+    .jiemu ul li .img{width: 200px; height: 200px; overflow: hidden;}
+
+    .jiemu ul li .img img{width: 200px; height: 200px;}
+    .jiemu ul li  .con{margin-left: 50px; width: 400px;}
+
+    .jiemu ul li  .con h4{text-align: center; border-bottom: 1px dashed #999999;width: 100%; line-height: 50px;}
+    .jiemu ul li  .con p{width: 100%;border-bottom: 1px dashed #999999; line-height:40px;}
+}
