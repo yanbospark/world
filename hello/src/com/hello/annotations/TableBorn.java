@@ -61,18 +61,20 @@ public class TableBorn {
 					if(length==0){
 						if(type.equals("varchar")){
 							length=255;
-						}else if(type.equals("int")){
+						}else if(type.equals("int")||type.equals("long")){
 							length=11;
 						}
 					} 
 					String ifnull = column.ifNull() ? "default NULL" : "NOT NULL";
 					if ("short/int/long/double".indexOf(type) > -1)
 						ifnull = "NOT NULL default 0";
-					if(column.isKey()) ifnull="NOT NULL PRIMARY KEY";
+					if(column.isKey()) ifnull="NOT NULL PRIMARY KEY AUTO_INCREMENT";
+					sql +=columnName+" "+type+"("+length+") "+ifnull;
 					String comment = column.comment();
-					sql +=columnName+" "+type+"("+length+") "+ifnull+" COMMENT '"+comment+"',";
+					if(!comment.equals("")) sql +=" COMMENT '"+comment+"'";
+					sql+=",";
 				}
-				sql=sql.substring(0, sql.length()-1).concat(" );");
+				sql=sql.substring(0, sql.length()-1).concat(" ) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
 				System.out.println(sql);
 			}
 		} catch (Exception e) {
@@ -93,7 +95,7 @@ public class TableBorn {
 		}else if("int".equals(original)){
 			return "int";
 		}else if("long".equals(original)){
-			return "bigint";
+			return "int";
 		}else if("float".equals(original)){
 			return "float";
 		}else if("double".equals(original)){

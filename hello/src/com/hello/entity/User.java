@@ -5,9 +5,9 @@ import com.hello.annotations.Table;
 
 @Table
 public class User {
-	@Column
+	@Column(isKey=true)
 	private long id;
-	@Column
+	@Column(comment="用户名")
 	private String name;
 	@Column(name="u_age",length=8)
 	private int age;

@@ -41,12 +41,25 @@ public class JsonUtils {
 		return json;
 	}
 	
+	
+	public static JSONObject objectMapToJson(Map<String, Object> map){
+		return mapToJson(map);
+	}
+	
+	public static JSONObject stringMapToJson(Map<String, String> map){
+		return mapToJson(map);
+	}
+	
+	public static JSONObject intMapToJson(Map<String, Integer> map){
+		return mapToJson(map);
+	}
+	
 	/**
 	 * <b>将Map转为JSON</b>
 	 * @param 	map	
 	 * @return	JSONObject
 	 */
-	public static JSONObject mapToJson(Map<String, Object> map){
+	private static JSONObject mapToJson(Map map){
 		JSONObject json = new JSONObject();
 		Iterator<String> keys = map.keySet().iterator();
 		while(keys.hasNext()){
@@ -55,7 +68,6 @@ public class JsonUtils {
 		}
 		return json;
 	}
-	
 	/**
 	 * <b>将List转成JSON</b>
 	 * <b>key和value要一一对应</b>
